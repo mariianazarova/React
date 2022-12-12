@@ -5,9 +5,11 @@ const NewsItem = () => {
 };
 
 const NewsItemStyle = styled.p({
-  width: "247px",
+  width: "200px",
   height: "110px",
   backgroundColor: "#bdcdf7",
+  margin:"0 auto",
+  
 });
 
 export default NewsItem;
