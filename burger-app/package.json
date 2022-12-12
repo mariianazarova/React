@@ -1,6 +1,7 @@
 {
   "name": "burger-app",
   "version": "0.1.0",
+  "homepage":"https://mariianazarova.github.io/React",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -12,7 +13,7 @@
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
-  "homepage":"http://{github-username}.github.io/{repo-name}",
+ 
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
