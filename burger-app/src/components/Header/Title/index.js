@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
 const Title = () => {
-  return <TitleStyle>Blog name</TitleStyle>;
+  return <TitleStyled>Burger App</TitleStyled>;
 };
 
-const TitleStyle = styled.h1({
-  fontStyle: "normal",
-  fontWeight: "400",
-  fontSize: "12px",
-  lineHeight: "15px",
-  marginLeft: "115px",
+const TitleStyled = styled.h1({
+  textAlign: "center",
+  flexBasis: "30",
+  fontFamily: "Original Burger Font",
+ 
 });
 
 export default Title;

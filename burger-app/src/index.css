@@ -1,22 +1,67 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+
+@font-face {
+  font-family: "Original Burger Font";
+  src: url("./assets/OriginalBurgerFont/OriginalBurger-Regular.otf")
+    format("truetype");
 }
-img{
-  max-width: 100%;
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+ 
+}
+
+h1 {
+  text-transform: uppercase;
+  font-family: "Monsterrat Bold";
+}
+
+h2 {
+  font-family: "Monsterrat Bold";
+}
+
+svg {
+  cursor: pointer;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 7px solid rgb(116, 211, 79);
+  border-color: transparent rgb(87, 79, 248) transparent;
+  animation: lds-dual-ring 2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

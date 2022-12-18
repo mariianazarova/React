@@ -1,22 +1,26 @@
 import styled from "styled-components";
+import LanguageSwitcher from "../../Items/LanguageSwitcher";
 import MenuItem from "./MenuItem";
 
 const Menu = () => {
+  const menuItems = ["Home", "Orders", "Contact", "FAQ"];
   return (
-    <MenuStyle>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-    </MenuStyle>
+    <MenuStyled>
+      <LanguageSwitcher />
+      {menuItems.map((item, index) => (
+        <MenuItem key={item + index}>{item}</MenuItem>
+      ))}
+    </MenuStyled>
   );
 };
 
-const MenuStyle = styled.div({
+const MenuStyled = styled.ul({
   display: "flex",
-  flexDirection:"row",
-  gap: "19px",
+  listStyle: "none",
+  justifyContent: "flex-end",
+  flexBasis: "35%",
+  fontFamily: "Original Burger Font",
+  textTransform:"uppercase",
 });
 
 export default Menu;

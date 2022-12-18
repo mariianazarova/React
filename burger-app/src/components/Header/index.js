@@ -3,24 +3,23 @@ import Logo from "./Logo";
 import Menu from "./Menu";
 import Title from "./Title";
 
-const Header = () => {
+const Header = (props) => {
   return (
-    <HeaderStyle>
+    <HeaderStyled>
       <Logo />
       <Title />
       <Menu />
-    </HeaderStyle>
+    </HeaderStyled>
   );
 };
 
-const HeaderStyle = styled.div({
-  backgroundColor: "#d9d9d9",
-  textAlign: "center",
+const HeaderStyled = styled.div({
+  height: "10vh",
+  padding: "0 15px",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  marginBottom: "19px",
-  padding: "6px 28px 5px 26px",
+  color:"#ffffff",
 });
 
 export default Header;

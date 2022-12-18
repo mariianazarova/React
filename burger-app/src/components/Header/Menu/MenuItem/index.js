@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-const MenuItem = () => {
-  return <MenuItemStyle></MenuItemStyle>;
+const MenuItem = ({ children }) => {
+  return <MenuItemStyled>{children}</MenuItemStyled>;
 };
 
-const MenuItemStyle = styled.div({
-  width: "46px",
-  height: "37px",
-  backgroundColor: "#e7efd6",
+const MenuItemStyled = styled.li({
   cursor: "pointer",
+  marginLeft: "15px",
+  color:"#ffffff",
+
 });
 
 export default MenuItem;
