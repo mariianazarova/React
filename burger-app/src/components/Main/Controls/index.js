@@ -1,9 +1,6 @@
-import { Stack } from "@mui/material";
 import styled from "styled-components";
-import Loader from "../Loader";
-import SingleControl from "./SingleControl";
+import ItemControl from "./ItemControl";
 import { Button, CircularProgress } from "@mui/material";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const Controls = ({
   ingredients,
@@ -14,16 +11,17 @@ const Controls = ({
 }) => {
   return (
     <ControlsStyled
-      spacing={3}
-      alignItems="center"
-      justifyContent="center"
-      onClick={updateBurger}
+     onClick={updateBurger}
     >
-      <TitleStyledCustomize>Customize</TitleStyledCustomize>
-      {loading && <Loader />}
+      <TitleCustomize>Customize</TitleCustomize>
+      {loading && <CircularProgress
+            sx={{
+              color: "#ffffff",
+            }}
+          />}
       {!loading &&
         ingredients.map((ingredient) => (
-          <SingleControl
+          <ItemControl
             quantity={burgerIngredients[ingredient]}
             key={ingredient}
             ingredient={ingredient}
@@ -44,47 +42,45 @@ const Controls = ({
           textTransform:"uppercase",
           color:"#3a3a3a",
           fontSize:"20px",
-         
-        }}
-        endIcon={!loading && <KeyboardArrowRightIcon />}
+      }}
+        endIcon={!loading}
       >
         {!loading ? (
           "Clear All"
         ) : (
           <CircularProgress
             sx={{
-              color: "#3a3a3a",
+              color: "#ffffff",
             }}
           />
         )}
       </Button>
-
-
-
-
      
     </ControlsStyled>
   );
 };
-const TitleStyledCustomize = styled.h2({
+const TitleCustomize = styled.h2({
   fontFamily: "Original Burger Font",
   textTransform:"uppercase",
   color:"#ffffff",
  
 });
-const ControlsStyled = styled(Stack)({
+const ControlsStyled = styled.div({
   height: "100%",
+  width: "22%",
   backgroundColor: "#3a3a3a",
   color:"#ffffff",
   fontSize:"18px",
   fontFamily: "Original Burger Font",
   textTransform:"uppercase",
   borderRadius: "15px",
+  display:"flex",
+  flexDirection:"column",
   alignSelf: "center",
-  flexBasis: "22%",
-  boxShadow:
-    "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px",
-  
+  alignItems:"center",
+  justifyContent:"center",
+  gap:"20px",
+    
 });
 
 export default Controls;

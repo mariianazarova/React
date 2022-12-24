@@ -1,12 +1,10 @@
 import axios from "axios";
 import React from "react";
 import styled from "styled-components";
-import {
-  Prices,
-  Burger,
-  Controls,
-  Checkout,
-} from "../../components/Items";
+import Prices from "./Prices";
+import Burger from "./Burger";
+import Controls from "./Controls";
+
 
 class Main extends React.Component {
   constructor() {
@@ -15,14 +13,13 @@ class Main extends React.Component {
       loading: false,
       prices: [],
       ingredients: [],
-      ingredientAddingOrder: [],
+      ingredientAddToOrder: [],
       orderPrice: "1.00",
     };
   }
 
   componentDidMount = async () => {
-    console.log("I was mounted");
-    try {
+      try {
       this.setState({ loading: true });
       const { data } = await axios.get(
         "https://burger-api-xcwp.onrender.com/ingredients"
@@ -47,39 +44,40 @@ class Main extends React.Component {
     }
    
   };
-  findIngredientPrice = (ingredient) => {
+  findPriceOfIngredient = (ingredient) => {
        return this.state.prices.find(
       (price) => price.name === ingredient
     ).price;
   };
-  handleChangeBurgerIngredientQuantity = (event) => {
+ changeIngredientQuantity = (event) => {
     event.preventDefault();
-    const tags = ["svg", "path"];
-    if (tags.includes(event.target.tagName)) {
-      const ingredientClicked =
-        event.target.parentNode.dataset["ingredient"] ||
-        event.target.dataset["ingredient"]; 
-      const actionClicked =
-        event.target.dataset["action"] ||
-        event.target.parentNode.dataset["action"]; 
-      const ingredientPrice =
-        this.findIngredientPrice(ingredientClicked);
-            this.setState((prevState) => {
+    
+    const ingredientClicked =
+    event.target.parentNode.dataset["ingredient"] ||
+    event.target.dataset["ingredient"]; 
+        
+    const actionClicked =
+    event.target.dataset["action"] ||
+    event.target.parentNode.dataset["action"]; 
+
+    const ingredientPrice =
+    this.findPriceOfIngredient(ingredientClicked);
+    this.setState((prevState) => {
      
-        const copyBurgerCreator = { ...prevState.burgerCreator };
-        const copyIngredientAddingOrder = [
-        ...prevState.ingredientAddingOrder,
+    const copyBurgerCreator = { ...prevState.burgerCreator };
+    const copyIngredientAddToOrder = [
+     ...prevState.ingredientAddToOrder,
         ];
 
-        let newPrice = +prevState.orderPrice; 
+    let newPrice = +prevState.orderPrice; 
 
         if (actionClicked === "decrement") {
           newPrice -= +ingredientPrice;
 
-          const idx =
-            copyIngredientAddingOrder.lastIndexOf(ingredientClicked);
+          const index =
+            copyIngredientAddToOrder.lastIndexOf(ingredientClicked);
 
-          copyIngredientAddingOrder.splice(idx, 1); 
+          copyIngredientAddToOrder.splice(index, 1); 
           if (copyBurgerCreator[ingredientClicked] <= 0) {
             return;
           }
@@ -88,10 +86,10 @@ class Main extends React.Component {
         if (actionClicked === "increment") {
           if (
             copyBurgerCreator[ingredientClicked] < 5 &&
-            copyIngredientAddingOrder.length < 10
+            copyIngredientAddToOrder.length < 10
           ) {
             newPrice += +ingredientPrice;
-            copyIngredientAddingOrder.push(ingredientClicked);
+            copyIngredientAddToOrder.push(ingredientClicked);
             copyBurgerCreator[ingredientClicked]++;
           } else {
             return;
@@ -99,12 +97,12 @@ class Main extends React.Component {
         }
         return {
           ...prevState,
-          ingredientAddingOrder: copyIngredientAddingOrder,
+          ingredientAddToOrder: copyIngredientAddToOrder,
           burgerCreator: copyBurgerCreator,
           orderPrice: newPrice.toFixed(2),
         };
       });
-    }
+    
   };
 
   clearBurger = () => {
@@ -112,9 +110,9 @@ class Main extends React.Component {
     for (const ingredient in this.state.burgerCreator) {
       clearerBurgerCreator[ingredient] = 0;
     }
-    if (this.state.ingredientAddingOrder.length !== 0) {
+    if (this.state.ingredientAddToOrder.length !== 0) {
       this.setState({
-        ingredientAddingOrder: [],
+        ingredientAddToOrder: [],
         burgerCreator: clearerBurgerCreator,
         orderPrice: "1.00",
       });
@@ -127,37 +125,38 @@ class Main extends React.Component {
       ingredients,
       burgerCreator,
       loading,
-      ingredientAddingOrder,
+      ingredientAddToOrder,
       orderPrice,
     } = this.state;
     return (
       <>
         <MainWrapper>
-          <Prices loading={loading} allPrices={prices} />
+          <Prices loading={loading} prices={prices} />
           <Burger
-            ingredientAddingOrder={ingredientAddingOrder}
+            ingredientAddToOrder={ingredientAddToOrder}
             totalPrice={orderPrice}
           />
           <Controls
             ingredients={ingredients}
-            updateBurger={this.handleChangeBurgerIngredientQuantity}
+            updateBurger={this.changeIngredientQuantity}
             burgerIngredients={burgerCreator}
             loading={loading}
             clearBurger={this.clearBurger}
           />
         </MainWrapper>
-        <Checkout />
+        
       </>
     );
   }
 }
 
 const MainWrapper = styled.div({
-  fontFamily: "Monsterrat Regular",
-  height: "70vh",
+  height: "70%",
   display: "flex",
   flexWrap: "no-wrap",
   justifyContent: "center",
+  gap:"40px",
+  
 });
 
 export default Main;

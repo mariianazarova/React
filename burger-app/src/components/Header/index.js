@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import Menu from "./Menu";
 import Title from "./Title";
 
-const Header = (props) => {
+const Header = () => {
   return (
     <HeaderStyled>
       <Logo />
@@ -14,8 +14,9 @@ const Header = (props) => {
 };
 
 const HeaderStyled = styled.div({
-  height: "10vh",
-  padding: "0 15px",
+  height: "10%",
+  paddingLeft:"16px",
+  paddingRight:"16px",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",

@@ -10,20 +10,20 @@ import "./index.css";
 
 const App = () => {
   return (
-    <AppWrapper className="App">
+    <Wrapper className="App">
       <Header />
       <Main />
       <Footer />
-    </AppWrapper>
+    </Wrapper>
   );
 };
 
-const AppWrapper = styled.div({
+const Wrapper = styled.div({
   height: "100vh",
   backgroundImage:`url(${background})`,
   backgroundPosition: 'center',
-        backgroundSize: 'contain',
-        backgroundRepeat: 'repeat',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'repeat',
   
 });
 

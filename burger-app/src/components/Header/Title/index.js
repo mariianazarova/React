@@ -6,9 +6,9 @@ const Title = () => {
 
 const TitleStyled = styled.h1({
   textAlign: "center",
-  flexBasis: "30",
   fontFamily: "Original Burger Font",
- 
-});
+  textTransform:"uppercase",
+  paddingLeft:"14%",
+ });
 
 export default Title;

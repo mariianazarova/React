@@ -5,7 +5,7 @@ const Footer = () => {
 };
 
 const FooterStyled = styled.div({
-  height: "10vh",
+  height: "10%",
 });
 
 export default Footer;
