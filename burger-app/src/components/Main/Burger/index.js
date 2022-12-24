@@ -17,7 +17,7 @@ const Burger = ({ ingredientAddToOrder, totalPrice }) => {
         )}
         {ingredientAddToOrder.map((product, index) => {
           return (
-            <ProductImgStyled
+            <ProductImg
               key={product + index}
               src={require(`../../../assets/products/${product}.png`)}
               alt={product}
@@ -90,7 +90,7 @@ const BottomStyled = styled.img({
    marginBottom:"22%",
 });
 
-const ProductImgStyled = styled.img({
+const ProductImg = styled.img({
   width: "300px",
   position: "absolute",
   marginBottom:"20px",
