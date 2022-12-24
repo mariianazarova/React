@@ -93,6 +93,7 @@ const BottomStyled = styled.img({
 const ProductImgStyled = styled.img({
   width: "300px",
   position: "absolute",
+  marginBottom:"20px",
   });
 
 const TitleStyled = styled.h1({
