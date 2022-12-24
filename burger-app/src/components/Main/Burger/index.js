@@ -72,7 +72,7 @@ const BurgerWrapperStyled = styled.div({
 
 const ParagraphStyled = styled.p({
   position: "absolute",
-  top: "52%",
+  top: "50%",
   fontFamily: "Original Burger Font",
   textTransform:"uppercase",
   color:"#ffffff",
