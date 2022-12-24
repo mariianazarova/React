@@ -72,7 +72,7 @@ const BurgerWrapperStyled = styled.div({
 
 const ParagraphStyled = styled.p({
   position: "absolute",
-  top: "52%",
+  top: "54%",
   fontFamily: "Original Burger Font",
   textTransform:"uppercase",
   color:"#ffffff",
@@ -93,7 +93,7 @@ const BottomStyled = styled.img({
 const ProductImg = styled.img({
   width: "300px",
   position: "absolute",
-  marginBottom:"20px",
+  marginBottom:"10px",
   });
 
 const TitleStyled = styled.h1({
