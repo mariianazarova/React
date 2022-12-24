@@ -29,7 +29,7 @@ class Main extends React.Component {
       });
 
        const quantities = data.reduce(
-        (acc, curr) => ({ [curr.name]: 0, ...acc }),
+        (arr, el) => ({ [el.name]: 0, ...arr }),
         {}
       );
 
@@ -129,7 +129,7 @@ class Main extends React.Component {
       orderPrice,
     } = this.state;
     return (
-      <>
+     
         <MainWrapper>
           <Prices loading={loading} prices={prices} />
           <Burger
@@ -144,8 +144,7 @@ class Main extends React.Component {
             clearBurger={this.clearBurger}
           />
         </MainWrapper>
-        
-      </>
+           
     );
   }
 }
