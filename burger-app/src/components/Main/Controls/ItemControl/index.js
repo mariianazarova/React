@@ -52,3 +52,4 @@ const ButtonItemControl = styled.button({
 });
 
 export default ItemControl;
+export {ImageStyled};

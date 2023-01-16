@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Prices from "./Prices";
 import Burger from "./Burger";
 import Controls from "./Controls";
+import Modal  from "../Modal";
 
 
 class Main extends React.Component {
@@ -11,9 +12,11 @@ class Main extends React.Component {
     super();
     this.state = {
       loading: false,
+      isCheckoutModalOpen: false,
       prices: [],
       ingredients: [],
       ingredientAddToOrder: [],
+      burgerCreator:{},
       orderPrice: "1.00",
     };
   }
@@ -37,10 +40,13 @@ class Main extends React.Component {
         prices: data,
         ingredients: ingredients,
         burgerCreator: quantities,
-        loading: false,
       });
     } catch (error) {
       console.log(error);
+    } finally{
+      this.setState({
+        loading: false,
+      });
     }
    
   };
@@ -118,7 +124,12 @@ class Main extends React.Component {
       });
     }
   };
-
+  openCheckoutModal=()=>{
+    this.setState({isCheckoutModalOpen:true});
+  }
+  closeCheckoutModal=()=>{
+    this.setState({isCheckoutModalOpen:false});
+  }
   render() {
     const {
       prices,
@@ -126,6 +137,7 @@ class Main extends React.Component {
       burgerCreator,
       loading,
       ingredientAddToOrder,
+      isCheckoutModalOpen,
       orderPrice,
     } = this.state;
     return (
@@ -135,6 +147,7 @@ class Main extends React.Component {
           <Burger
             ingredientAddToOrder={ingredientAddToOrder}
             totalPrice={orderPrice}
+            openCheckoutModal={this.openCheckoutModal}
           />
           <Controls
             ingredients={ingredients}
@@ -143,6 +156,12 @@ class Main extends React.Component {
             loading={loading}
             clearBurger={this.clearBurger}
           />
+          <Modal isOpen={isCheckoutModalOpen} 
+           burgerIngredients={burgerCreator}
+           totalPrice={orderPrice}
+          closeCheckoutModal={this.closeCheckoutModal}>
+
+          </Modal>
         </MainWrapper>
            
     );

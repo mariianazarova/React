@@ -43,17 +43,9 @@ const Controls = ({
           color:"#3a3a3a",
           fontSize:"20px",
       }}
-        endIcon={!loading}
+     
       >
-        {!loading ? (
-          "Clear All"
-        ) : (
-          <CircularProgress
-            sx={{
-              color: "#ffffff",
-            }}
-          />
-        )}
+      Clear All
       </Button>
      
     </ControlsStyled>

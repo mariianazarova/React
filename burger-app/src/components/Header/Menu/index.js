@@ -13,7 +13,7 @@ const Menu = () => {
   );
 };
 
-const MenuStyled = styled.ul({
+const MenuStyled = styled.div({
   display: "flex",
   flexDirection:"row",
   listStyle: "none",
