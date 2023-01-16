@@ -45,21 +45,7 @@ const CheckoutModal = ({
   // );
 
   const handleOrder = async (data) => {
-    const {
-      name: orderName,
-      phone: orderPhone,
-      email: orderEmail,
-      address: orderAddress,
-    } = data;
-    const orderData = {
-      orderName,
-      orderPhone,
-      orderEmail,
-      orderFast: checked,
-      orderAddress,
-      // orderProducts: Object.fromEntries(burgerIngredients),
-      orderPrice,
-    };
+    
 
     try {
       setLoading(true);
@@ -75,21 +61,32 @@ const CheckoutModal = ({
     }
   };
   const validationSchema = yup.object({
-    phone: yup
+    orderPhone: yup
       .string("Enter your phone")
-
       .required("Phone is required"),
-    address: yup.string("Enter your address")
+    orderAddress: yup
+      .string("Enter your address")
       .required("Address is required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      phone: "",
-      address: "",
-    },
+      orderName:"",
+      orderPhone:"",
+      orderEmail:"",
+      orderFast: false,
+      orderAddress:"",
+      orderProducts: {},
+      orderPrice:"",
+      
+          },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+         const noneZeroBurgerIngredients = Object.fromEntries(Object 
+        .entries(burgerIngredients) 
+        .filter(([k, v]) => v !== 0) 
+    );
+      values.orderProducts={...noneZeroBurgerIngredients};
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -147,16 +144,16 @@ const CheckoutModal = ({
           <Grid item xs={12} sm={6}>
             <TextField
               
-              id="phone"
-              name="phone"
+              id="orderPhone"
+              name="orderPhone"
               label="Phone*"
               fullWidth
               autoComplete="phone"
               variant="standard"
-              value={formik.values.phone}
+              value={formik.values.orderPhone}
               onChange={formik.handleChange}
-              error={formik.touched.phone && Boolean(formik.errors.phone)}
-              helperText={formik.touched.phone && formik.errors.phone}
+              error={formik.touched.orderPhone && Boolean(formik.errors.orderPhone)}
+              helperText={formik.touched.orderPhone && formik.errors.orderPhone}
             />
           </Grid>
           <Grid item xs={12}>
@@ -172,16 +169,16 @@ const CheckoutModal = ({
           <Grid item xs={12}>
             <TextField
               
-              id="address"
-              name="address"
+              id="orderAddress"
+              name="orderAddress"
               label="Address*"
               fullWidth
               autoComplete="shipping address"
               variant="standard"
-              value={formik.values.address}
+              value={formik.values.orderAddress}
               onChange={formik.handleChange}
-              error={formik.touched.address && Boolean(formik.errors.address)}
-              helperText={formik.touched.address && formik.errors.address}
+              error={formik.touched.orderAddress && Boolean(formik.errors.orderAddress)}
+              helperText={formik.touched.orderAddress && formik.errors.orderAddress}
             />
           </Grid>
 
