@@ -76,7 +76,7 @@ const Burger = ({ ingredientAddToOrder, totalPrice, openCheckoutModal }) => {
                 }}
               >
                 <Typography sx={{ p: 2 }}>
-                  The content of the Popover.
+                Please fill the burger with ingredients!
                 </Typography>
               </Popover>
             </div>
