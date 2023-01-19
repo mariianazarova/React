@@ -34,8 +34,13 @@ const CheckoutModal = ({
   };
 
   const validationSchema = yup.object({
-    orderName: yup.string("Enter your name").required("Name is required"),
-    orderPhone: yup.string("Enter your phone").required("Phone is required"),
+    orderName: yup
+      .string("Enter your name")
+      .required("Name is required"),
+    orderPhone: yup
+      .string("Enter your phone").required("Phone is required"),
+    orderEmail: yup
+      .string("Enter your email").required("Email is required"),
     orderAddress: yup
       .string("Enter your address")
       .required("Address is required"),
@@ -64,10 +69,12 @@ const CheckoutModal = ({
 
       try {
         await axios.post("https://burger-api-xcwp.onrender.com/orders", values);
-        openOrderPostRequestModal("Okey");
+        openOrderPostRequestModal(
+          "Thanks for your order! Our manager will contact you shortly!"
+        );
       } catch (error) {
         console.log(error);
-        openOrderPostRequestModal("Not Okay");
+        openOrderPostRequestModal("Oops, something is wrong!");
       } finally {
         closeCheckoutModal();
       }
@@ -152,7 +159,7 @@ const CheckoutModal = ({
               <TextField
                 id="orderEmail"
                 name="orderEmail"
-                label="Email"
+                label="Email*"
                 fullWidth
                 autoComplete="email"
                 variant="standard"

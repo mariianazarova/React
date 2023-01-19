@@ -15,12 +15,12 @@ const Header = () => {
 
 const HeaderStyled = styled.div({
   height: "10%",
-  paddingLeft:"16px",
-  paddingRight:"16px",
+  paddingLeft: "16px",
+  paddingRight: "16px",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  color:"#ffffff",
+  color: "#ffffff",
 });
 
 export default Header;

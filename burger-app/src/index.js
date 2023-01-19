@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import styled from "styled-components";
 import background from "./assets/bg.jpg";
 
-
 import { Header, Footer, Main } from "./components";
 
 import "./index.css";
@@ -20,11 +19,10 @@ const App = () => {
 
 const Wrapper = styled.div({
   height: "100vh",
-  backgroundImage:`url(${background})`,
-  backgroundPosition: 'center',
-  backgroundSize: 'contain',
-  backgroundRepeat: 'repeat',
-  
+  backgroundImage: `url(${background})`,
+  backgroundPosition: "center",
+  backgroundSize: "contain",
+  backgroundRepeat: "repeat",
 });
 
 export default App;

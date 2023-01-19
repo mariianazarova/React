@@ -7,14 +7,16 @@ const Prices = ({ prices, loading }) => {
     <PricesStyled>
       <TitlePrice>Prices</TitlePrice>
       <Loader>
-        {loading && <CircularProgress
-        sx={{
-          color: "#ffffff",
-        }} />}
+        {loading && (
+          <CircularProgress
+            sx={{
+              color: "#ffffff",
+            }}
+          />
+        )}
         {!loading &&
           prices.map((price) => {
-            const { name: ingredientName, price: ingredientPrice } =
-              price;
+            const { name: ingredientName, price: ingredientPrice } = price;
             return (
               <ItemPrice
                 key={ingredientName + ingredientPrice}
@@ -30,24 +32,22 @@ const Prices = ({ prices, loading }) => {
 const TitlePrice = styled.h2({
   textAlign: "center",
   fontFamily: "Original Burger Font",
- 
 });
 const PricesStyled = styled.div({
   height: "100%",
   backgroundColor: "#3a3a3a",
-  color:"#ffffff",
-  fontSize:"18px",
+  color: "#ffffff",
+  fontSize: "18px",
   fontFamily: "Original Burger Font",
-  textTransform:"uppercase",
+  textTransform: "uppercase",
   borderRadius: "15px",
-  display:"flex",
-  flexDirection:"column",
+  display: "flex",
+  flexDirection: "column",
   alignSelf: "center",
-  alignItems:"center",
-  justifyContent:"center",
-  gap:"20px",
-  flexBasis:"22%",
-    
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "20px",
+  flexBasis: "22%",
 });
 
 const Loader = styled.div({});

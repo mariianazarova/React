@@ -10,15 +10,15 @@ const Controls = ({
   clearBurger,
 }) => {
   return (
-    <ControlsStyled
-     onClick={updateBurger}
-    >
+    <ControlsStyled onClick={updateBurger}>
       <TitleCustomize>Customize</TitleCustomize>
-      {loading && <CircularProgress
-            sx={{
-              color: "#ffffff",
-            }}
-          />}
+      {loading && (
+        <CircularProgress
+          sx={{
+            color: "#ffffff",
+          }}
+        />
+      )}
       {!loading &&
         ingredients.map((ingredient) => (
           <ItemControl
@@ -27,9 +27,9 @@ const Controls = ({
             ingredient={ingredient}
           />
         ))}
-        
-        <Button
-       onClick={clearBurger}
+
+      <Button
+        onClick={clearBurger}
         variant="contained"
         size="large"
         sx={{
@@ -39,40 +39,36 @@ const Controls = ({
           width: "160px",
           height: "50px",
           fontFamily: "Original Burger Font",
-          textTransform:"uppercase",
-          color:"#3a3a3a",
-          fontSize:"20px",
-      }}
-     
+          textTransform: "uppercase",
+          color: "#3a3a3a",
+          fontSize: "20px",
+        }}
       >
-      Clear All
+        Clear All
       </Button>
-     
     </ControlsStyled>
   );
 };
 const TitleCustomize = styled.h2({
   fontFamily: "Original Burger Font",
-  textTransform:"uppercase",
-  color:"#ffffff",
- 
+  textTransform: "uppercase",
+  color: "#ffffff",
 });
 const ControlsStyled = styled.div({
   height: "100%",
   width: "22%",
   backgroundColor: "#3a3a3a",
-  color:"#ffffff",
-  fontSize:"18px",
+  color: "#ffffff",
+  fontSize: "18px",
   fontFamily: "Original Burger Font",
-  textTransform:"uppercase",
+  textTransform: "uppercase",
   borderRadius: "15px",
-  display:"flex",
-  flexDirection:"column",
+  display: "flex",
+  flexDirection: "column",
   alignSelf: "center",
-  alignItems:"center",
-  justifyContent:"center",
-  gap:"20px",
-    
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "20px",
 });
 
 export default Controls;

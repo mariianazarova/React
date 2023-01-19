@@ -5,7 +5,6 @@ const ItemPrice = ({ itemName, itemPrice }) => {
     <ItemPriceStyled>
       {itemName}: {itemPrice} ₴
     </ItemPriceStyled>
-    
   );
 };
 

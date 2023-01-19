@@ -1,27 +1,25 @@
 import styled from "styled-components";
 
 const Menu = () => {
-    return (
+  return (
     <MenuStyled>
-                
-        <p>Home</p>
-        <p>Orders</p>
-        <p>Contact</p>
-        <p>FAQ</p>
-
-     </MenuStyled>
+      <p>Home</p>
+      <p>Orders</p>
+      <p>Contact</p>
+      <p>FAQ</p>
+    </MenuStyled>
   );
 };
 
 const MenuStyled = styled.div({
   display: "flex",
-  flexDirection:"row",
+  flexDirection: "row",
   listStyle: "none",
   fontFamily: "Original Burger Font",
-  textTransform:"uppercase",
+  textTransform: "uppercase",
   cursor: "pointer",
   gap: "20px",
-  color:"#ffffff",
+  color: "#ffffff",
 });
 
 export default Menu;

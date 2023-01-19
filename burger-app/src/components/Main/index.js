@@ -7,7 +7,7 @@ import Controls from "./Controls";
 import Modal from "../Modal";
 import { Dialog } from "@mui/material";
 import { DialogContent } from "@mui/material";
-import DialogContentText from '@mui/material/DialogContentText';
+import DialogContentText from "@mui/material/DialogContentText";
 
 class Main extends React.Component {
   constructor() {
@@ -178,8 +178,23 @@ class Main extends React.Component {
           onClose={this.closeOrderPostRequestModal}
           aria-describedby="alert-dialog-description"
         >
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
+          <DialogContent
+            sx={{
+              width: "500px",
+              height: "200px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <DialogContentText
+              id="alert-dialog-description"
+              sx={{
+                fontSize: "24px",
+                fontWeight: "400",
+                textAlign: "center",
+              }}
+            >
               {orderPostRequestMessage}
             </DialogContentText>
           </DialogContent>

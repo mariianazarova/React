@@ -1,14 +1,10 @@
 @font-face {
   font-family: "Original Burger Font";
-  src: url("./assets/OriginalBurgerFont/OriginalBurger-Regular.otf")
-    format("truetype");
+  src: url("./assets/OriginalBurgerFont/OriginalBurger-Regular.otf") format("truetype");
 }
 
 * {
   padding: 0;
   margin: 0;
   list-style: none;
-
 }
-
-

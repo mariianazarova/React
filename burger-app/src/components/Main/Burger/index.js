@@ -39,11 +39,10 @@ const Burger = ({ ingredientAddToOrder, totalPrice, openCheckoutModal }) => {
           {(popupState) => (
             <div>
               <Button
-               
                 onClick={() => {
-                  if(ingredientAddToOrder.length){  
-                     openCheckoutModal();
-                  } else{
+                  if (ingredientAddToOrder.length) {
+                    openCheckoutModal();
+                  } else {
                     bindTrigger(popupState).onClick();
                   }
                 }}
@@ -76,7 +75,7 @@ const Burger = ({ ingredientAddToOrder, totalPrice, openCheckoutModal }) => {
                 }}
               >
                 <Typography sx={{ p: 2 }}>
-                Please fill the burger with ingredients!
+                  Please fill the burger with ingredients!
                 </Typography>
               </Popover>
             </div>
