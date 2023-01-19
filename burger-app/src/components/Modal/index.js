@@ -10,10 +10,12 @@ import { ImageStyled } from "../Main/Controls/ItemControl";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import * as React from "react";
+import axios from "axios";
 
 const CheckoutModal = ({
   isOpen,
   closeCheckoutModal,
+  openOrderPostRequestModal,
   orderSummary,
   orderPrice,
   handleFastDeliveryChange,
@@ -24,17 +26,16 @@ const CheckoutModal = ({
 }) => {
   const [checked, setChecked] = React.useState(false);
 
+  const addExtraCostIfOrderFast = () =>
+    (+totalPrice + (checked ? 2.5 : 0)).toFixed(2);
+
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
 
   const validationSchema = yup.object({
-    orderName: yup
-      .string("Enter your name")
-      .required("Name is required"),
-    orderPhone: yup
-      .string("Enter your phone")
-      .required("Phone is required"),
+    orderName: yup.string("Enter your name").required("Name is required"),
+    orderPhone: yup.string("Enter your phone").required("Phone is required"),
     orderAddress: yup
       .string("Enter your address")
       .required("Address is required"),
@@ -51,17 +52,25 @@ const CheckoutModal = ({
       orderPrice: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const noneZeroBurgerIngredients = Object.fromEntries(
         Object.entries(burgerIngredients).filter(([k, v]) => v !== 0)
       );
       values.orderPrice = totalPrice;
       values.orderProducts = { ...noneZeroBurgerIngredients };
       values.orderFast = checked;
-      if (values.orderFast) {
-        values.orderPrice = +totalPrice + 2.5;
+      values.orderPrice = String(addExtraCostIfOrderFast());
+      // alert(JSON.stringify(values, null, 2));
+
+      try {
+        await axios.post("https://burger-api-xcwp.onrender.com/orders", values);
+        openOrderPostRequestModal("Okey");
+      } catch (error) {
+        console.log(error);
+        openOrderPostRequestModal("Not Okay");
+      } finally {
+        closeCheckoutModal();
       }
-      alert(JSON.stringify(values, null, 2));
     },
   });
 
@@ -197,7 +206,7 @@ const CheckoutModal = ({
                 variant="h6"
                 gutterBottom
               >
-                Total price: {totalPrice} ₴
+                Total price: {addExtraCostIfOrderFast()} ₴
               </Typography>
             </Grid>
             <Grid

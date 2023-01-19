@@ -4,8 +4,10 @@ import styled from "styled-components";
 import Prices from "./Prices";
 import Burger from "./Burger";
 import Controls from "./Controls";
-import Modal  from "../Modal";
-
+import Modal from "../Modal";
+import { Dialog } from "@mui/material";
+import { DialogContent } from "@mui/material";
+import DialogContentText from '@mui/material/DialogContentText';
 
 class Main extends React.Component {
   constructor() {
@@ -13,16 +15,18 @@ class Main extends React.Component {
     this.state = {
       loading: false,
       isCheckoutModalOpen: false,
+      isOrderPostRequestModalOpen: false,
+      orderPostRequestMessage: "",
       prices: [],
       ingredients: [],
       ingredientAddToOrder: [],
-      burgerCreator:{},
+      burgerCreator: {},
       orderPrice: "1.00",
     };
   }
 
   componentDidMount = async () => {
-      try {
+    try {
       this.setState({ loading: true });
       const { data } = await axios.get(
         "https://burger-api-xcwp.onrender.com/ingredients"
@@ -31,7 +35,7 @@ class Main extends React.Component {
         return ingredient.name;
       });
 
-       const quantities = data.reduce(
+      const quantities = data.reduce(
         (arr, el) => ({ [el.name]: 0, ...arr }),
         {}
       );
@@ -43,72 +47,63 @@ class Main extends React.Component {
       });
     } catch (error) {
       console.log(error);
-    } finally{
+    } finally {
       this.setState({
         loading: false,
       });
     }
-   
   };
   findPriceOfIngredient = (ingredient) => {
-       return this.state.prices.find(
-      (price) => price.name === ingredient
-    ).price;
+    return this.state.prices.find((price) => price.name === ingredient).price;
   };
- changeIngredientQuantity = (event) => {
+  changeIngredientQuantity = (event) => {
     event.preventDefault();
-    
+
     const ingredientClicked =
-    event.target.parentNode.dataset["ingredient"] ||
-    event.target.dataset["ingredient"]; 
-        
+      event.target.parentNode.dataset["ingredient"] ||
+      event.target.dataset["ingredient"];
+
     const actionClicked =
-    event.target.dataset["action"] ||
-    event.target.parentNode.dataset["action"]; 
+      event.target.dataset["action"] ||
+      event.target.parentNode.dataset["action"];
 
-    const ingredientPrice =
-    this.findPriceOfIngredient(ingredientClicked);
+    const ingredientPrice = this.findPriceOfIngredient(ingredientClicked);
     this.setState((prevState) => {
-     
-    const copyBurgerCreator = { ...prevState.burgerCreator };
-    const copyIngredientAddToOrder = [
-     ...prevState.ingredientAddToOrder,
-        ];
+      const copyBurgerCreator = { ...prevState.burgerCreator };
+      const copyIngredientAddToOrder = [...prevState.ingredientAddToOrder];
 
-    let newPrice = +prevState.orderPrice; 
+      let newPrice = +prevState.orderPrice;
 
-        if (actionClicked === "decrement") {
-          newPrice -= +ingredientPrice;
+      if (actionClicked === "decrement") {
+        newPrice -= +ingredientPrice;
 
-          const index =
-            copyIngredientAddToOrder.lastIndexOf(ingredientClicked);
+        const index = copyIngredientAddToOrder.lastIndexOf(ingredientClicked);
 
-          copyIngredientAddToOrder.splice(index, 1); 
-          if (copyBurgerCreator[ingredientClicked] <= 0) {
-            return;
-          }
-          copyBurgerCreator[ingredientClicked]--;
+        copyIngredientAddToOrder.splice(index, 1);
+        if (copyBurgerCreator[ingredientClicked] <= 0) {
+          return;
         }
-        if (actionClicked === "increment") {
-          if (
-            copyBurgerCreator[ingredientClicked] < 5 &&
-            copyIngredientAddToOrder.length < 10
-          ) {
-            newPrice += +ingredientPrice;
-            copyIngredientAddToOrder.push(ingredientClicked);
-            copyBurgerCreator[ingredientClicked]++;
-          } else {
-            return;
-          }
+        copyBurgerCreator[ingredientClicked]--;
+      }
+      if (actionClicked === "increment") {
+        if (
+          copyBurgerCreator[ingredientClicked] < 5 &&
+          copyIngredientAddToOrder.length < 10
+        ) {
+          newPrice += +ingredientPrice;
+          copyIngredientAddToOrder.push(ingredientClicked);
+          copyBurgerCreator[ingredientClicked]++;
+        } else {
+          return;
         }
-        return {
-          ...prevState,
-          ingredientAddToOrder: copyIngredientAddToOrder,
-          burgerCreator: copyBurgerCreator,
-          orderPrice: newPrice.toFixed(2),
-        };
-      });
-    
+      }
+      return {
+        ...prevState,
+        ingredientAddToOrder: copyIngredientAddToOrder,
+        burgerCreator: copyBurgerCreator,
+        orderPrice: newPrice.toFixed(2),
+      };
+    });
   };
 
   clearBurger = () => {
@@ -124,12 +119,26 @@ class Main extends React.Component {
       });
     }
   };
-  openCheckoutModal=()=>{
-    this.setState({isCheckoutModalOpen:true});
-  }
-  closeCheckoutModal=()=>{
-    this.setState({isCheckoutModalOpen:false});
-  }
+  openCheckoutModal = () => {
+    this.setState({ isCheckoutModalOpen: true });
+  };
+
+  closeCheckoutModal = () => {
+    this.setState({ isCheckoutModalOpen: false });
+  };
+  openOrderPostRequestModal = (message) => {
+    console.log(message);
+    this.setState({
+      isOrderPostRequestModalOpen: true,
+      orderPostRequestMessage: message,
+    });
+  };
+  closeOrderPostRequestModal = () => {
+    this.setState({
+      isOrderPostRequestModalOpen: false,
+      orderPostRequestMessage: "",
+    });
+  };
   render() {
     const {
       prices,
@@ -138,32 +147,44 @@ class Main extends React.Component {
       loading,
       ingredientAddToOrder,
       isCheckoutModalOpen,
+      isOrderPostRequestModalOpen,
+      orderPostRequestMessage,
       orderPrice,
     } = this.state;
     return (
-     
-        <MainWrapper>
-          <Prices loading={loading} prices={prices} />
-          <Burger
-            ingredientAddToOrder={ingredientAddToOrder}
-            totalPrice={orderPrice}
-            openCheckoutModal={this.openCheckoutModal}
-          />
-          <Controls
-            ingredients={ingredients}
-            updateBurger={this.changeIngredientQuantity}
-            burgerIngredients={burgerCreator}
-            loading={loading}
-            clearBurger={this.clearBurger}
-          />
-          <Modal isOpen={isCheckoutModalOpen} 
-           burgerIngredients={burgerCreator}
-           totalPrice={orderPrice}
-          closeCheckoutModal={this.closeCheckoutModal}>
-
-          </Modal>
-        </MainWrapper>
-           
+      <MainWrapper>
+        <Prices loading={loading} prices={prices} />
+        <Burger
+          ingredientAddToOrder={ingredientAddToOrder}
+          totalPrice={orderPrice}
+          openCheckoutModal={this.openCheckoutModal}
+        />
+        <Controls
+          ingredients={ingredients}
+          updateBurger={this.changeIngredientQuantity}
+          burgerIngredients={burgerCreator}
+          loading={loading}
+          clearBurger={this.clearBurger}
+        />
+        <Modal
+          isOpen={isCheckoutModalOpen}
+          burgerIngredients={burgerCreator}
+          totalPrice={orderPrice}
+          closeCheckoutModal={this.closeCheckoutModal}
+          openOrderPostRequestModal={this.openOrderPostRequestModal}
+        ></Modal>
+        <Dialog
+          open={isOrderPostRequestModalOpen}
+          onClose={this.closeOrderPostRequestModal}
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              {orderPostRequestMessage}
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
+      </MainWrapper>
     );
   }
 }
@@ -173,8 +194,7 @@ const MainWrapper = styled.div({
   display: "flex",
   flexWrap: "no-wrap",
   justifyContent: "center",
-  gap:"40px",
-  
+  gap: "40px",
 });
 
 export default Main;
