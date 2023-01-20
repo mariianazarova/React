@@ -203,7 +203,7 @@ const CheckoutModal = ({
                     onChange={handleChange}
                   />
                 }
-                label="Quick delivery ($ 2.5 )"
+                label="Quick delivery ( 2.5 ₴ )"
               />
             </Grid>
             <Grid item xs={12}>
