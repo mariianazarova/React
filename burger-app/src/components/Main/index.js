@@ -8,6 +8,9 @@ import Modal from "../Modal";
 import { Dialog } from "@mui/material";
 import { DialogContent } from "@mui/material";
 import DialogContentText from "@mui/material/DialogContentText";
+import Orders from "../Orders";
+import Faq from "../FAQ";
+import Contact from "../Contact";
 
 class Main extends React.Component {
   constructor() {
@@ -166,6 +169,9 @@ class Main extends React.Component {
           loading={loading}
           clearBurger={this.clearBurger}
         />
+        <Orders></Orders>
+        <Contact></Contact>
+        <Faq></Faq>
         <Modal
           isOpen={isCheckoutModalOpen}
           burgerIngredients={burgerCreator}
