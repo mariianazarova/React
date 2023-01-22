@@ -1,4 +1,4 @@
-import { color } from "@mui/system";
+
 import styled from "styled-components";
 
 const Faq = () => {

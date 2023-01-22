@@ -2,17 +2,27 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import styled from "styled-components";
 import background from "./assets/bg.jpg";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header, Footer, Main } from "./components";
 
 import "./index.css";
+import Orders from "./components/Orders";
+import Faq from "./components/Faq";
+import Contact from "./components/Contact";
 
 const App = () => {
   return (
     <Wrapper className="App">
-      <Header />
-      <Main />
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route id="1" path="/" element={<Main />} />
+          <Route id="2" path="/orders" element={<Orders />} />
+          <Route id="3" path="/contact" element={<Contact />} />
+          <Route id="4" path="/faq" element={<Faq />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </Wrapper>
   );
 };

@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
     <MenuStyled>
-      <p>Home</p>
-      <p>Orders</p>
-      <p>Contact</p>
-      <p>FAQ</p>
+      <Link to="/">Home</Link>
+      <Link to="/orders">Orders</Link>
+      <Link to="/contact">Contact</Link>
+      <Link to="/faq">FAQ</Link>
     </MenuStyled>
   );
 };
