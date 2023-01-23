@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Menu = () => {
   return (
     <MenuStyled>
-      <Link to="/">Home</Link>
-      <Link to="/orders">Orders</Link>
-      <Link to="/contact">Contact</Link>
-      <Link to="/faq">FAQ</Link>
+      <StyledLink to="/">Home</StyledLink>
+      <StyledLink to="/orders">Orders</StyledLink>
+      <StyledLink to="/contact">Contact</StyledLink>
+      <StyledLink to="/faq">FAQ</StyledLink>
     </MenuStyled>
   );
 };
@@ -15,11 +15,15 @@ const Menu = () => {
 const MenuStyled = styled.div({
   display: "flex",
   flexDirection: "row",
+  gap: "20px",
+});
+
+const StyledLink = styled(Link)({
+  textDecoration: "none",
   listStyle: "none",
   fontFamily: "Original Burger Font",
   textTransform: "uppercase",
   cursor: "pointer",
-  gap: "20px",
   color: "#ffffff",
 });
 

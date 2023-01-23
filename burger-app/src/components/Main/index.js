@@ -9,7 +9,6 @@ import { Dialog } from "@mui/material";
 import { DialogContent } from "@mui/material";
 import DialogContentText from "@mui/material/DialogContentText";
 
-
 class Main extends React.Component {
   constructor() {
     super();
@@ -139,6 +138,7 @@ class Main extends React.Component {
       isOrderPostRequestModalOpen: false,
       orderPostRequestMessage: "",
     });
+    this.clearBurger();
   };
   render() {
     const {
@@ -167,7 +167,7 @@ class Main extends React.Component {
           loading={loading}
           clearBurger={this.clearBurger}
         />
-        
+
         <Modal
           isOpen={isCheckoutModalOpen}
           burgerIngredients={burgerCreator}
@@ -177,6 +177,7 @@ class Main extends React.Component {
         ></Modal>
         <Dialog
           open={isOrderPostRequestModalOpen}
+          clearBurger={this.clearBurger}
           onClose={this.closeOrderPostRequestModal}
           aria-describedby="alert-dialog-description"
         >
