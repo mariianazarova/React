@@ -65,7 +65,7 @@ const CheckoutModal = ({
       values.orderProducts = { ...noneZeroBurgerIngredients };
       values.orderFast = checked;
       values.orderPrice = String(addExtraCostIfOrderFast());
-      // alert(JSON.stringify(values, null, 2));
+     
 
       try {
         await axios.post("https://burger-api-xcwp.onrender.com/orders", values);

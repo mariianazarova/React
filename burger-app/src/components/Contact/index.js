@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import { SocialIcon } from 'react-social-icons';
-
+import { SocialIcon } from "react-social-icons";
 
 class Contact extends React.Component {
   constructor(props) {
@@ -29,8 +28,10 @@ class Contact extends React.Component {
         {items.map((item) => (
           <ol key={item.id}>
             <ItemLink href="tel:item.phone"> {item.phone} </ItemLink>
-           <p><ItemLink href="mailto:item.email"> {item.email} </ItemLink></p>
-           
+            <p>
+              <ItemLink href="mailto:item.email"> {item.email} </ItemLink>
+            </p>
+
             <CityStyled>
               <ItemStyled> Ivano-Frankivsk: </ItemStyled> {item.locations.if}
               <ItemStyled> Lviv: </ItemStyled> {item.locations.lviv}
@@ -39,17 +40,21 @@ class Contact extends React.Component {
             <ElementStyled>Worktime: </ElementStyled>
             {item.worktime}
             <SocialIconStyled>
-            <SocialIcon 
-          bgColor="#ffffff"
-          style={{ height: "32px", width: "32px"}}
-            url={item.fb}/>
-            <SocialIcon 
-            bgColor="#ffffff"
-            style={{ height: "32px", width: "32px"}}
-            url={item.inst}/>
-            <SocialIcon bgColor="#ffffff"
-          style={{ height: "32px", width: "32px"}}
-            url={item.web}/>
+              <SocialIcon
+                bgColor="#ffffff"
+                style={{ height: "32px", width: "32px" }}
+                url={item.fb}
+              />
+              <SocialIcon
+                bgColor="#ffffff"
+                style={{ height: "32px", width: "32px" }}
+                url={item.inst}
+              />
+              <SocialIcon
+                bgColor="#ffffff"
+                style={{ height: "32px", width: "32px" }}
+                url={item.web}
+              />
             </SocialIconStyled>
           </ol>
         ))}
@@ -93,14 +98,14 @@ const TitleContactStyled = styled.h2({
 });
 const ItemLink = styled.a({
   color: "#ffffff",
-  textDecoration:"none"
+  textDecoration: "none",
 });
- 
+
 const SocialIconStyled = styled.div({
   display: "flex",
   flexDirection: "row",
   marginTop: "10px",
-  gap:"10px",
-  justifyContent:"center"
+  gap: "10px",
+  justifyContent: "center",
 });
 export default Contact;
