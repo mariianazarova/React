@@ -8,55 +8,46 @@ import Modal from "../Modal";
 import { Dialog } from "@mui/material";
 import { DialogContent } from "@mui/material";
 import DialogContentText from "@mui/material/DialogContentText";
+import { useEffect, useState } from "react";
 
-class Main extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: false,
-      isCheckoutModalOpen: false,
-      isOrderPostRequestModalOpen: false,
-      orderPostRequestMessage: "",
-      prices: [],
-      ingredients: [],
-      ingredientAddToOrder: [],
-      burgerCreator: {},
-      orderPrice: "1.00",
-    };
-  }
+const Main = () => {
+  const [loading, setLoading] = useState(false);
+  const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
+  const [isOrderPostRequestModalOpen, setIsOrderPostRequestModalOpen] =
+    useState(false);
+  const [orderPostRequestMessage, setOrderPostRequestMessage] = useState("");
+  const [prices, setPrices] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [ingredientAddToOrder, setIngredientAddToOrder] = useState([]);
+  const [burgerCreator, setBurgerCreator] = useState({});
+  const [orderPrice, setOrderPrice] = useState("1.00");
 
-  componentDidMount = async () => {
-    try {
-      this.setState({ loading: true });
-      const { data } = await axios.get(
-        "https://burger-api-xcwp.onrender.com/ingredients"
-      );
-      const ingredients = data.map((ingredient) => {
-        return ingredient.name;
+  useEffect(() => {
+    setLoading(true);
+
+    axios
+      .get("https://burger-api-xcwp.onrender.com/ingredients")
+      .then((result) => {
+        setPrices(result.data);
+
+        setIngredients(
+          result.data.map((ingredient) => {
+            return ingredient.name;
+          })
+        );
+
+        setBurgerCreator(
+          result.data.reduce((arr, el) => ({ [el.name]: 0, ...arr }), {})
+        );
+
+        setLoading(false);
       });
+  }, []);
 
-      const quantities = data.reduce(
-        (arr, el) => ({ [el.name]: 0, ...arr }),
-        {}
-      );
-
-      this.setState({
-        prices: data,
-        ingredients: ingredients,
-        burgerCreator: quantities,
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.setState({
-        loading: false,
-      });
-    }
+  const findPriceOfIngredient = (ingredient) => {
+    return prices.find((price) => price.name === ingredient).price;
   };
-  findPriceOfIngredient = (ingredient) => {
-    return this.state.prices.find((price) => price.name === ingredient).price;
-  };
-  changeIngredientQuantity = (event) => {
+  const changeIngredientQuantity = (event) => {
     event.preventDefault();
 
     const ingredientClicked =
@@ -67,145 +58,129 @@ class Main extends React.Component {
       event.target.dataset["action"] ||
       event.target.parentNode.dataset["action"];
 
-    const ingredientPrice = this.findPriceOfIngredient(ingredientClicked);
-    this.setState((prevState) => {
-      const copyBurgerCreator = { ...prevState.burgerCreator };
-      const copyIngredientAddToOrder = [...prevState.ingredientAddToOrder];
+    const ingredientPrice = findPriceOfIngredient(ingredientClicked);
 
-      let newPrice = +prevState.orderPrice;
+    const copyBurgerCreator = { ...burgerCreator };
+    const copyIngredientAddToOrder = [...ingredientAddToOrder];
 
-      if (actionClicked === "decrement") {
-        newPrice -= +ingredientPrice;
+    let newPrice = +orderPrice;
 
-        const index = copyIngredientAddToOrder.lastIndexOf(ingredientClicked);
+    if (actionClicked === "decrement") {
+      newPrice -= +ingredientPrice;
 
-        copyIngredientAddToOrder.splice(index, 1);
-        if (copyBurgerCreator[ingredientClicked] <= 0) {
-          return;
-        }
-        copyBurgerCreator[ingredientClicked]--;
+      const index = copyIngredientAddToOrder.lastIndexOf(ingredientClicked);
+
+      copyIngredientAddToOrder.splice(index, 1);
+      if (copyBurgerCreator[ingredientClicked] <= 0) {
+        return;
       }
-      if (actionClicked === "increment") {
-        if (
-          copyBurgerCreator[ingredientClicked] < 5 &&
-          copyIngredientAddToOrder.length < 10
-        ) {
-          newPrice += +ingredientPrice;
-          copyIngredientAddToOrder.push(ingredientClicked);
-          copyBurgerCreator[ingredientClicked]++;
-        } else {
-          return;
-        }
+      copyBurgerCreator[ingredientClicked]--;
+    }
+    if (actionClicked === "increment") {
+      if (
+        copyBurgerCreator[ingredientClicked] < 5 &&
+        copyIngredientAddToOrder.length < 10
+      ) {
+        newPrice += +ingredientPrice;
+        copyIngredientAddToOrder.push(ingredientClicked);
+        copyBurgerCreator[ingredientClicked]++;
+      } else {
+        return;
       }
-      return {
-        ...prevState,
-        ingredientAddToOrder: copyIngredientAddToOrder,
-        burgerCreator: copyBurgerCreator,
-        orderPrice: newPrice.toFixed(2),
-      };
-    });
+    }
+
+    setIngredientAddToOrder(copyIngredientAddToOrder);
+    setBurgerCreator(copyBurgerCreator);
+    setOrderPrice(newPrice.toFixed(2));
   };
 
-  clearBurger = () => {
+  const clearBurger = () => {
     const clearerBurgerCreator = {};
-    for (const ingredient in this.state.burgerCreator) {
+    for (const ingredient in burgerCreator) {
       clearerBurgerCreator[ingredient] = 0;
     }
-    if (this.state.ingredientAddToOrder.length !== 0) {
-      this.setState({
-        ingredientAddToOrder: [],
-        burgerCreator: clearerBurgerCreator,
-        orderPrice: "1.00",
-      });
+    if (ingredientAddToOrder.length !== 0) {
+      setIngredientAddToOrder([]);
+      setBurgerCreator(clearerBurgerCreator);
+      setOrderPrice("1.00");
     }
   };
-  openCheckoutModal = () => {
-    this.setState({ isCheckoutModalOpen: true });
+
+  const openCheckoutModal = () => {
+    setIsCheckoutModalOpen(true);
   };
 
-  closeCheckoutModal = () => {
-    this.setState({ isCheckoutModalOpen: false });
+  const closeCheckoutModal = () => {
+    setIsCheckoutModalOpen(false);
   };
-  openOrderPostRequestModal = (message) => {
+
+  const openOrderPostRequestModal = (message) => {
     console.log(message);
-    this.setState({
-      isOrderPostRequestModalOpen: true,
-      orderPostRequestMessage: message,
-    });
-  };
-  closeOrderPostRequestModal = () => {
-    this.setState({
-      isOrderPostRequestModalOpen: false,
-      orderPostRequestMessage: "",
-    });
-    this.clearBurger();
-  };
-  render() {
-    const {
-      prices,
-      ingredients,
-      burgerCreator,
-      loading,
-      ingredientAddToOrder,
-      isCheckoutModalOpen,
-      isOrderPostRequestModalOpen,
-      orderPostRequestMessage,
-      orderPrice,
-    } = this.state;
-    return (
-      <MainWrapper>
-        <Prices loading={loading} prices={prices} />
-        <Burger
-          ingredientAddToOrder={ingredientAddToOrder}
-          totalPrice={orderPrice}
-          openCheckoutModal={this.openCheckoutModal}
-        />
-        <Controls
-          ingredients={ingredients}
-          updateBurger={this.changeIngredientQuantity}
-          burgerIngredients={burgerCreator}
-          loading={loading}
-          clearBurger={this.clearBurger}
-        />
 
-        <Modal
-          isOpen={isCheckoutModalOpen}
-          burgerIngredients={burgerCreator}
-          totalPrice={orderPrice}
-          closeCheckoutModal={this.closeCheckoutModal}
-          openOrderPostRequestModal={this.openOrderPostRequestModal}
-        ></Modal>
-        <Dialog
-          open={isOrderPostRequestModalOpen}
-          clearBurger={this.clearBurger}
-          onClose={this.closeOrderPostRequestModal}
-          aria-describedby="alert-dialog-description"
+    setIsOrderPostRequestModalOpen(true);
+    setOrderPostRequestMessage(message);
+  };
+  const closeOrderPostRequestModal = () => {
+    setIsOrderPostRequestModalOpen(false);
+    setOrderPostRequestMessage("");
+
+    clearBurger();
+  };
+
+  return (
+    <MainWrapper>
+      <Prices loading={loading} prices={prices} />
+      <Burger
+        ingredientAddToOrder={ingredientAddToOrder}
+        totalPrice={orderPrice}
+        openCheckoutModal={openCheckoutModal}
+      />
+      <Controls
+        ingredients={ingredients}
+        updateBurger={changeIngredientQuantity}
+        burgerIngredients={burgerCreator}
+        loading={loading}
+        clearBurger={clearBurger}
+      />
+
+      <Modal
+        isOpen={isCheckoutModalOpen}
+        burgerIngredients={burgerCreator}
+        totalPrice={orderPrice}
+        closeCheckoutModal={closeCheckoutModal}
+        openOrderPostRequestModal={openOrderPostRequestModal}
+        clearBurger={clearBurger}
+      ></Modal>
+      <Dialog
+        open={isOrderPostRequestModalOpen}
+        clearBurger={clearBurger}
+        onClose={closeOrderPostRequestModal}
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent
+          sx={{
+            width: "500px",
+            height: "200px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          <DialogContent
+          <DialogContentText
+            id="alert-dialog-description"
             sx={{
-              width: "500px",
-              height: "200px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              fontSize: "24px",
+              fontWeight: "400",
+              textAlign: "center",
             }}
           >
-            <DialogContentText
-              id="alert-dialog-description"
-              sx={{
-                fontSize: "24px",
-                fontWeight: "400",
-                textAlign: "center",
-              }}
-            >
-              {orderPostRequestMessage}
-            </DialogContentText>
-          </DialogContent>
-        </Dialog>
-      </MainWrapper>
-    );
-  }
-}
+            {orderPostRequestMessage}
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+    </MainWrapper>
+  );
+};
 
 const MainWrapper = styled.div({
   height: "70%",

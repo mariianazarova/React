@@ -5,8 +5,8 @@ const Menu = () => {
   const menuItems = ["Home", "Orders", "Contact", "FAQ"];
   return (
     <MenuStyled>
-      {menuItems.map((item, index) => (
-        <ItemMenu key={item + index}>{item}</ItemMenu>
+      {menuItems.map((el, index) => (
+        <ItemMenu key={el + index}>{el}</ItemMenu>
       ))}
     </MenuStyled>
   );

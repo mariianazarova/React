@@ -34,13 +34,9 @@ const CheckoutModal = ({
   };
 
   const validationSchema = yup.object({
-    orderName: yup
-      .string("Enter your name")
-      .required("Name is required"),
-    orderPhone: yup
-      .string("Enter your phone").required("Phone is required"),
-    orderEmail: yup
-      .string("Enter your email").required("Email is required"),
+    orderName: yup.string("Enter your name").required("Name is required"),
+    orderPhone: yup.string("Enter your phone").required("Phone is required"),
+    orderEmail: yup.string("Enter your email").required("Email is required"),
     orderAddress: yup
       .string("Enter your address")
       .required("Address is required"),
@@ -65,7 +61,6 @@ const CheckoutModal = ({
       values.orderProducts = { ...noneZeroBurgerIngredients };
       values.orderFast = checked;
       values.orderPrice = String(addExtraCostIfOrderFast());
-     
 
       try {
         await axios.post("https://burger-api-xcwp.onrender.com/orders", values);
@@ -247,6 +242,7 @@ const CheckoutModal = ({
                 onClick={() => {
                   closeCheckoutModal();
                   formik.handleReset();
+                  clearBurger();
                 }}
                 variant="contained"
                 size="large"
