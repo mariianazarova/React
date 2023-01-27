@@ -36,7 +36,7 @@ class Orders extends React.Component {
               <th>Price of order</th>
             </tr>
             {items
-              .slice(0, 10)
+              .slice(0, 30)
               .reverse()
               .map((item) => (
                 <tr key={item._id}>

@@ -30,10 +30,6 @@ const App = () => {
 
 const Wrapper = styled.div({
   height: "100vh",
-  backgroundImage: `url(${background})`,
-  backgroundPosition: "center",
-  backgroundSize: "contain",
-  backgroundRepeat: "repeat",
 });
 
 export default App;
