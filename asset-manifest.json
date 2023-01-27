@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.007ad499.css",
-    "main.js": "/static/js/main.80559e4a.js",
-    "static/media/bg.jpg": "/static/media/bg.836be3a2c2a3d1fa22da.jpg",
-    "static/media/onion.png": "/static/media/onion.0b9217d0d3ad6312ba72.png",
-    "static/media/pickle.png": "/static/media/pickle.efb06e8080e3b3a8c0b0.png",
-    "static/media/tomato.png": "/static/media/tomato.5dd3a023dde517de78dc.png",
-    "static/media/meat.png": "/static/media/meat.5e7b4cc56998c5ea5c46.png",
-    "static/media/salad.png": "/static/media/salad.35a04f31c643a99696a7.png",
-    "static/media/cheese.png": "/static/media/cheese.49d51f3515c9ece92386.png",
-    "static/media/bottom_bun.png": "/static/media/bottom_bun.3970f5ca3e3602bca610.png",
-    "static/media/top_bun.png": "/static/media/top_bun.3e510197e81026735fd0.png",
-    "static/media/bacon.png": "/static/media/bacon.f0fac70a552e11d553ad.png",
-    "static/media/OriginalBurger-Regular.otf": "/static/media/OriginalBurger-Regular.dcd8437ca8bfc4c4f781.otf",
-    "index.html": "/index.html",
-    "main.007ad499.css.map": "/static/css/main.007ad499.css.map",
-    "main.80559e4a.js.map": "/static/js/main.80559e4a.js.map"
+    "main.css": "/React/static/css/main.2d13314a.css",
+    "main.js": "/React/static/js/main.8622346c.js",
+    "static/media/bg.jpg": "/React/static/media/bg.836be3a2c2a3d1fa22da.jpg",
+    "static/media/onion.png": "/React/static/media/onion.0b9217d0d3ad6312ba72.png",
+    "static/media/pickle.png": "/React/static/media/pickle.efb06e8080e3b3a8c0b0.png",
+    "static/media/tomato.png": "/React/static/media/tomato.5dd3a023dde517de78dc.png",
+    "static/media/meat.png": "/React/static/media/meat.5e7b4cc56998c5ea5c46.png",
+    "static/media/salad.png": "/React/static/media/salad.35a04f31c643a99696a7.png",
+    "static/media/cheese.png": "/React/static/media/cheese.49d51f3515c9ece92386.png",
+    "static/media/bottom_bun.png": "/React/static/media/bottom_bun.3970f5ca3e3602bca610.png",
+    "static/media/top_bun.png": "/React/static/media/top_bun.3e510197e81026735fd0.png",
+    "static/media/bacon.png": "/React/static/media/bacon.f0fac70a552e11d553ad.png",
+    "static/media/OriginalBurger-Regular.otf": "/React/static/media/OriginalBurger-Regular.dcd8437ca8bfc4c4f781.otf",
+    "index.html": "/React/index.html",
+    "main.2d13314a.css.map": "/React/static/css/main.2d13314a.css.map",
+    "main.8622346c.js.map": "/React/static/js/main.8622346c.js.map"
   },
   "entrypoints": [
-    "static/css/main.007ad499.css",
-    "static/js/main.80559e4a.js"
+    "static/css/main.2d13314a.css",
+    "static/js/main.8622346c.js"
   ]
 }
