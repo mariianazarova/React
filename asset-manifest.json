@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/React/static/css/main.96e4d19e.css",
-    "main.js": "/React/static/js/main.0277ada5.js",
+    "main.css": "/React/static/css/main.2d13314a.css",
+    "main.js": "/React/static/js/main.5e13312a.js",
     "static/media/bg.jpg": "/React/static/media/bg.836be3a2c2a3d1fa22da.jpg",
     "static/media/onion.png": "/React/static/media/onion.0b9217d0d3ad6312ba72.png",
     "static/media/pickle.png": "/React/static/media/pickle.efb06e8080e3b3a8c0b0.png",
@@ -14,11 +14,11 @@
     "static/media/bacon.png": "/React/static/media/bacon.f0fac70a552e11d553ad.png",
     "static/media/OriginalBurger-Regular.otf": "/React/static/media/OriginalBurger-Regular.dcd8437ca8bfc4c4f781.otf",
     "index.html": "/React/index.html",
-    "main.96e4d19e.css.map": "/React/static/css/main.96e4d19e.css.map",
-    "main.0277ada5.js.map": "/React/static/js/main.0277ada5.js.map"
+    "main.2d13314a.css.map": "/React/static/css/main.2d13314a.css.map",
+    "main.5e13312a.js.map": "/React/static/js/main.5e13312a.js.map"
   },
   "entrypoints": [
-    "static/css/main.96e4d19e.css",
-    "static/js/main.0277ada5.js"
+    "static/css/main.2d13314a.css",
+    "static/js/main.5e13312a.js"
   ]
 }
