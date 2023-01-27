@@ -24,22 +24,18 @@ const Main = () => {
 
   useEffect(() => {
     setLoading(true);
-
     axios
       .get("https://burger-api-xcwp.onrender.com/ingredients")
       .then((result) => {
         setPrices(result.data);
-
         setIngredients(
           result.data.map((ingredient) => {
             return ingredient.name;
           })
         );
-
         setBurgerCreator(
           result.data.reduce((arr, el) => ({ [el.name]: 0, ...arr }), {})
         );
-
         setLoading(false);
       });
   }, []);
@@ -95,13 +91,13 @@ const Main = () => {
   };
 
   const clearBurger = () => {
-    const clearerBurgerCreator = {};
+    const clearBurgerCreator = {};
     for (const ingredient in burgerCreator) {
-      clearerBurgerCreator[ingredient] = 0;
+      clearBurgerCreator[ingredient] = 0;
     }
     if (ingredientAddToOrder.length !== 0) {
       setIngredientAddToOrder([]);
-      setBurgerCreator(clearerBurgerCreator);
+      setBurgerCreator(clearBurgerCreator);
       setOrderPrice("1.00");
     }
   };
@@ -115,8 +111,6 @@ const Main = () => {
   };
 
   const openOrderPostRequestModal = (message) => {
-    console.log(message);
-
     setIsOrderPostRequestModalOpen(true);
     setOrderPostRequestMessage(message);
   };
@@ -142,7 +136,6 @@ const Main = () => {
         loading={loading}
         clearBurger={clearBurger}
       />
-
       <Modal
         isOpen={isCheckoutModalOpen}
         burgerIngredients={burgerCreator}

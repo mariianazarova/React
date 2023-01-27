@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Footer = () => {
-  return <FooterStyled></FooterStyled>;
+  return <FooterStyled />;
 };
 
 const FooterStyled = styled.div({

@@ -12,21 +12,21 @@ const Controls = ({
   return (
     <ControlsStyled onClick={updateBurger}>
       <TitleCustomize>Customize</TitleCustomize>
-      {loading && (
+      {loading ? (
         <CircularProgress
           sx={{
             color: "#ffffff",
           }}
         />
-      )}
-      {!loading &&
+      ) : (
         ingredients.map((ingredient) => (
           <ItemControl
             quantity={burgerIngredients[ingredient]}
             key={ingredient}
             ingredient={ingredient}
           />
-        ))}
+        ))
+      )}
 
       <Button
         onClick={clearBurger}

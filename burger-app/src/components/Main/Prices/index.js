@@ -7,14 +7,13 @@ const Prices = ({ prices, loading }) => {
     <PricesStyled>
       <TitlePrice>Prices</TitlePrice>
       <Loader>
-        {loading && (
+        {loading ? (
           <CircularProgress
             sx={{
               color: "#ffffff",
             }}
           />
-        )}
-        {!loading &&
+        ) : (
           prices.map((price) => {
             const { name: ingredientName, price: ingredientPrice } = price;
             return (
@@ -24,7 +23,8 @@ const Prices = ({ prices, loading }) => {
                 itemPrice={ingredientPrice}
               />
             );
-          })}
+          })
+        )}
       </Loader>
     </PricesStyled>
   );

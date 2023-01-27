@@ -12,24 +12,25 @@ const Burger = ({ ingredientAddToOrder, totalPrice, openCheckoutModal }) => {
         src={require("../../../assets/products/top_bun.png")}
         alt="Top"
       />
-      {!ingredientAddToOrder.length && (
+      {!ingredientAddToOrder.length ? (
         <ParagraphStyled>
           Start by adding ingredients to your burger
         </ParagraphStyled>
+      ) : (
+        ingredientAddToOrder.map((product, index) => {
+          return (
+            <ProductImg
+              key={product + index}
+              src={require(`../../../assets/products/${product}.png`)}
+              alt={product}
+              style={{
+                bottom: 95 + index * 9,
+                zIndex: index + 1,
+              }}
+            />
+          );
+        })
       )}
-      {ingredientAddToOrder.map((product, index) => {
-        return (
-          <ProductImg
-            key={product + index}
-            src={require(`../../../assets/products/${product}.png`)}
-            alt={product}
-            style={{
-              bottom: 95 + index * 9,
-              zIndex: index + 1,
-            }}
-          />
-        );
-      })}
       <BottomStyled
         src={require("../../../assets/products/bottom_bun.png")}
         alt="Bottom"
@@ -40,11 +41,9 @@ const Burger = ({ ingredientAddToOrder, totalPrice, openCheckoutModal }) => {
             <div>
               <Button
                 onClick={() => {
-                  if (ingredientAddToOrder.length) {
-                    openCheckoutModal();
-                  } else {
-                    bindTrigger(popupState).onClick();
-                  }
+                  ingredientAddToOrder.length
+                    ? openCheckoutModal()
+                    : bindTrigger(popupState).onClick();
                 }}
                 variant="contained"
                 size="large"

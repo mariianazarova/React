@@ -7,22 +7,26 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 const Faq = () => {
   return (
-    <FaqStyled> 
+    <FaqStyled>
       <TitleFaqStyled>FAQ</TitleFaqStyled>
-      <Accordion sx={{
-                borderRadius: "10px",
-              }}>
+      <Accordion
+        sx={{
+          borderRadius: "10px",
+        }}
+      >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon 
-            sx={{
-              color: "#f7c223",
-            }}/>}
+          expandIcon={
+            <ExpandMoreIcon
+              sx={{
+                color: "#f7c223",
+              }}
+            />
+          }
           aria-controls="panel1a-content"
           id="panel1a-header"
           sx={{
             backgroundColor: "#3a3a3a",
             color: "#ffffff",
-           
           }}
         >
           <Typography>Why can't I add 12 ingredients to the burger?</Typography>
@@ -34,9 +38,11 @@ const Faq = () => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion sx={{
-                borderRadius: "10px",
-              }}>
+      <Accordion
+        sx={{
+          borderRadius: "10px",
+        }}
+      >
         <AccordionSummary
           expandIcon={
             <ExpandMoreIcon
@@ -61,14 +67,19 @@ const Faq = () => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion sx={{
-                borderRadius: "10px",
-              }}>
+      <Accordion
+        sx={{
+          borderRadius: "10px",
+        }}
+      >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon 
-            sx={{
-              color: "#f7c223",
-            }}/>}
+          expandIcon={
+            <ExpandMoreIcon
+              sx={{
+                color: "#f7c223",
+              }}
+            />
+          }
           aria-controls="panel2a-content"
           id="panel2a-header"
           sx={{
@@ -87,14 +98,19 @@ const Faq = () => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion sx={{
-                borderRadius: "10px",
-              }}>
+      <Accordion
+        sx={{
+          borderRadius: "10px",
+        }}
+      >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon 
-            sx={{
-              color: "#f7c223",
-            }}/>}
+          expandIcon={
+            <ExpandMoreIcon
+              sx={{
+                color: "#f7c223",
+              }}
+            />
+          }
           aria-controls="panel2a-content"
           id="panel2a-header"
           sx={{
@@ -108,20 +124,24 @@ const Faq = () => {
           <Typography>Yes, we will open in other cities soon.</Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion sx={{
-                borderRadius: "10px",
-              }}>
+      <Accordion
+        sx={{
+          borderRadius: "10px",
+        }}
+      >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon 
-            sx={{
-              color: "#f7c223",
-            }}/>}
+          expandIcon={
+            <ExpandMoreIcon
+              sx={{
+                color: "#f7c223",
+              }}
+            />
+          }
           aria-controls="panel2a-content"
           id="panel2a-header"
           sx={{
             backgroundColor: "#3a3a3a",
             color: "#ffffff",
-            
           }}
         >
           <Typography>How can I pay for an order?</Typography>
@@ -143,10 +163,10 @@ const FaqStyled = styled.div({
 });
 
 const TitleFaqStyled = styled.h2({
-  textAlign:"center",
+  textAlign: "center",
   fontFamily: "Original Burger Font",
   textTransform: "uppercase",
   color: "#f7c223",
-  marginBottom:"20px",
+  marginBottom: "20px",
 });
 export default Faq;

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-import { Grid } from "@mui/material";
-
 
 class Orders extends React.Component {
   constructor(props) {
@@ -27,38 +25,44 @@ class Orders extends React.Component {
 
     return (
       <OrderStyled>
-        <TitleOrderStyled > Orders </TitleOrderStyled >
+        <TitleOrderStyled> Orders </TitleOrderStyled>
         <OrderItemStyled>
-                  {items.slice(0, 7).map((item) => (
-          <Grid>
-          <ol key={item._id}>
-            <li> First Name: {item.orderName}</li>
-            <li> Phone: {item.orderPhone} </li>
-            <li> Email:{item.orderEmail}</li>
-            <li> Address of order: {item.orderAddress}</li>
-            <li>Products of order:</li>
-            {Object.keys(item.orderProducts).map((ingredient) => {
-              return (
-                <li key={ingredient}>
-                  {ingredient}: {item.orderProducts[ingredient]}
-                </li>
-              );
-            })}
-            Price of order: {item.orderPrice}
-          </ol>
-          </Grid>
-        ))}
-      
+          <table>
+            <tr>
+              <th className="first-column">First Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Address of order</th>
+              <th>Products of order</th>
+              <th>Price of order</th>
+            </tr>
+            {items.slice(0).reverse().map((item) => (
+              <tr key={item._id}>
+                <td className="first-column"> {item.orderName}</td>
+                <td> {item.orderPhone} </td>
+                <td> {item.orderEmail}</td>
+                <td> {item.orderAddress}</td>
+                <td>
+                  {Object.keys(item.orderProducts).map((ingredient) => {
+                    return (
+                      <span key={ingredient}>
+                        {ingredient}: {item.orderProducts[ingredient]}
+                        &nbsp;&nbsp;
+                      </span>
+                    );
+                  })}
+                </td>
+                <td>{item.orderPrice}</td>
+              </tr>
+            ))}
+          </table>
         </OrderItemStyled>
       </OrderStyled>
     );
-   
   }
-  
 }
 
 const OrderStyled = styled.div({
-  backgroundImage: "grey",
   width: "90%",
   margin: "0 auto",
   color: "#ffffff",
@@ -77,11 +81,13 @@ const TitleOrderStyled = styled.h2({
   marginBottom: "20px",
 });
 const OrderItemStyled = styled.div({
- display:"flex",
- flexDirection:"row",
- flexWrap:"wrap",
- gap:"20px",
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  gap: "20px",
   color: "white",
+  backgroundColor: "#3a3a3a",
+  borderRadius: "10px",
 });
 
 export default Orders;

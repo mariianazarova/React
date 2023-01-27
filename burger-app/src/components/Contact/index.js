@@ -2,7 +2,6 @@ import styled from "styled-components";
 import React from "react";
 import { SocialIcon } from "react-social-icons";
 
-
 class Contact extends React.Component {
   constructor(props) {
     super(props);

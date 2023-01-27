@@ -37,9 +37,7 @@ const CheckoutModal = ({
     orderName: yup.string("Enter your name").required("Name is required"),
     orderPhone: yup.string("Enter your phone").required("Phone is required"),
     orderEmail: yup.string("Enter your email").required("Email is required"),
-    orderAddress: yup
-      .string("Enter your address")
-      .required("Address is required"),
+    orderAddress: yup.string("Enter your address").required("Address is required"),
   });
 
   const formik = useFormik({
@@ -68,7 +66,7 @@ const CheckoutModal = ({
           "Thanks for your order! Our manager will contact you shortly!"
         );
       } catch (error) {
-        console.log(error);
+        console.error(error);
         openOrderPostRequestModal("Oops, something is wrong!");
       } finally {
         closeCheckoutModal();

@@ -4,13 +4,11 @@ const ItemControl = ({ ingredient, updateBurger, quantity }) => {
   return (
     <ItemControlStyled data-ingredient={ingredient} onClick={updateBurger}>
       <ButtonItemControl data-action="decrement" data-ingredient={ingredient}>
-        {" "}
-        -{" "}
+        -
       </ButtonItemControl>
       <QuantityStyled>{quantity}</QuantityStyled>
       <ButtonItemControl data-action="increment" data-ingredient={ingredient}>
-        {" "}
-        +{" "}
+        +
       </ButtonItemControl>
       <ImageStyled
         src={require(`../../../../assets/ingredients/${ingredient}.png`)}
