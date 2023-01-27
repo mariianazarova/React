@@ -36,25 +36,28 @@ class Orders extends React.Component {
               <th>Products of order</th>
               <th>Price of order</th>
             </tr>
-            {items.slice(0).reverse().map((item) => (
-              <tr key={item._id}>
-                <td className="first-column"> {item.orderName}</td>
-                <td> {item.orderPhone} </td>
-                <td> {item.orderEmail}</td>
-                <td> {item.orderAddress}</td>
-                <td>
-                  {Object.keys(item.orderProducts).map((ingredient) => {
-                    return (
-                      <span key={ingredient}>
-                        {ingredient}: {item.orderProducts[ingredient]}
-                        &nbsp;&nbsp;
-                      </span>
-                    );
-                  })}
-                </td>
-                <td>{item.orderPrice}</td>
-              </tr>
-            ))}
+            {items
+              .slice(0, 10)
+              .reverse()
+              .map((item) => (
+                <tr key={item._id}>
+                  <td className="first-column"> {item.orderName}</td>
+                  <td> {item.orderPhone} </td>
+                  <td> {item.orderEmail}</td>
+                  <td> {item.orderAddress}</td>
+                  <td>
+                    {Object.keys(item.orderProducts).map((ingredient) => {
+                      return (
+                        <span key={ingredient}>
+                          {ingredient}: {item.orderProducts[ingredient]}
+                          &nbsp;&nbsp;
+                        </span>
+                      );
+                    })}
+                  </td>
+                  <td>{item.orderPrice}</td>
+                </tr>
+              ))}
           </table>
         </OrderItemStyled>
       </OrderStyled>
