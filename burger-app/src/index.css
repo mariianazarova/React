@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Original Burger Font";
+  src: url("./assets/OriginalBurgerFont/OriginalBurger-Regular.otf") format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+}
+
+td {
+  text-align: right;
+  padding: 12px;
+  border-bottom: 2px solid #444343;
+
+}
+
+th {
+  text-align: right;
+  padding: 12px;
+  background-color: #444343;
+  border-radius: 10px 10px 0 0;
+}
+
+.first-column {
+  text-align: left;
+}
+
+body {
+  background-image: url("./assets/bg.jpg");
+  background-position: center;
+  background-size: contain;
+}
