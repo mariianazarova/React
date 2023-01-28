@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import styled from "styled-components";
-import background from "./assets/bg.jpg";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header, Footer, Main } from "./components";
 
@@ -17,7 +16,6 @@ const App = () => {
         <Header />
         <Routes>
           <Route id="1" path="/" element={<Main />} />
-          <Route id="2" path="/react" element={<Main />} />
           <Route id="3" path="/orders" element={<Orders />} />
           <Route id="4" path="/contact" element={<Contact />} />
           <Route id="5" path="/faq" element={<Faq />} />
