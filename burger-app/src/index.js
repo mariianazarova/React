@@ -11,7 +11,7 @@ import Contact from "./components/Contact";
 
 const App = () => {
   return (
-    <Wrapper className="App">
+    <Wrapper>
       <BrowserRouter>
         <Header />
         <Routes>
